@@ -18,10 +18,10 @@ class TelaVeiculo:
     def validar_ano(self, prompt):
         while True:
             ano = input(prompt)
-            if ano.isdigit():
+            if ano.isdigit() and len(ano) == 4:
                 return int(ano)
             else:
-                print("Por favor, digite um ano válido (apenas números).")
+                print("Por favor, digite um ano válido com exatamente 4 dígitos.")
 
 # Perguntar os problemas
     def descreve_sintomas(self, veiculo):
