@@ -1,21 +1,23 @@
+# Cadastro do veículo
 class Veiculo:
     def __init__(self, marca, modelo, ano):
         self.marca = marca
         self.modelo = modelo
         self.ano = ano
 
+# Menu para cadastrar veículo
 class TelaVeiculo:
     def cadastra_veiculo_dados(self):
         print("------CADASTRO DE VEÍCULO------")
         marca = input("Marca: ")
         modelo = input("Modelo: ")
         ano = input("Ano: ")
-        return Veiculo(marca, modelo, ano)
 
+# Perguntar os problemas
     def descreve_sintomas(self, veiculo):
-        sintomas = input("Descreva os sintomas do veículo separados por vírgula:\n (aquecimento, pane elétrica, problemas no câmbio, pneus furados, bateria descarregada, problemas nos freios, luz de verificação do motor ligada,\n motor superaquecido, vazamentos de óleo, problemas na transmissão, falha no sistema de arrefecimento, falha na ignição, ruídos no motor, suspensão irregular): ")
+        sintomas = input("Descreva os sintomas do veículo separados por vírgula:\n (aquecimento, pane elétrica, problemas no câmbio, pneus furados, bateria descarregada, problemas nos freios,\n luz de verificação do motor ligada, motor superaquecido, vazamentos de óleo, problemas na transmissão,\n falha no sistema de arrefecimento, falha na ignição, ruídos no motor, suspensão irregular): ")
 
-
+# Problemas e sugestões
         problemas = {
             "aquecimento": "Superaquecimento do motor. Verifique o nível de água e as mangueiras internas.",
             "pane elétrica": "Verifique sinais de dificuldade para ligar o carro e possíveis vazamentos de ácido.",
@@ -34,26 +36,27 @@ class TelaVeiculo:
         }
 
 
-
+# Reconhecimento do problema
         for sintoma in sintomas.split(","):
             sintoma = sintoma.strip().lower()
             if sintoma in problemas:
                 print(f"Problema possível para '{sintoma}':{problemas[sintoma]}")
-
+# Case não ache, opção de chamar um guincho
             else:
                 print(f"Sintoma não reconhecido: {sintoma}.")
                 guincho = input("Deseja chamar um guincho? (S/N): ")
                 if guincho.lower() == "s":
                     localizacao = input("Insira sua localização: ")
                     chamar_guincho(localizacao)
+# Retornar ao menu principal
                 else:
                     print("Continuando com outras opções.")
 
+# Opção para chamar guincho
 def chamar_guincho(localizacao):
-    # Lógica para chamar um guincho
-    # Recebe a localização e inicia o processo de solicitação
     print(f"Guincho a caminho! Sua localização: {localizacao}")
 
+# Menu principal do programa
 def menu_principal():
     print("\nMenu Principal:")
     print("1. Cadastrar Veículo")
@@ -64,7 +67,7 @@ def menu_principal():
 while True:
     menu_principal()
     opcao = input("Escolha uma opção (1/2/3): ")
-
+# As 3 funcionalidades disponíveis no menu
     if opcao == "1":
         tela_veiculo = TelaVeiculo()
         veiculo = tela_veiculo.cadastra_veiculo_dados()
