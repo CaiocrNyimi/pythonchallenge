@@ -11,7 +11,17 @@ class TelaVeiculo:
         print("------CADASTRO DE VEÍCULO------")
         marca = input("Marca: ")
         modelo = input("Modelo: ")
-        ano = input("Ano: ")
+        ano = self.validar_ano("Ano: ")
+        return Veiculo(marca, modelo, ano)
+    
+# Confirmar apenas números no ano
+    def validar_ano(self, prompt):
+        while True:
+            ano = input(prompt)
+            if ano.isdigit():
+                return int(ano)
+            else:
+                print("Por favor, digite um ano válido (apenas números).")
 
 # Perguntar os problemas
     def descreve_sintomas(self, veiculo):
