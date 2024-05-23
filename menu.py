@@ -42,7 +42,8 @@ class TelaVeiculo:
                 print("Por favor, digite um ano válido com exatamente 4 dígitos, entre 1980 e 2024.")
 
 # Problemas e sugestões
-def descreve_sintomas(self):
+    def descreve_sintomas(self):
+               
         problemas = {
             "aquecimento": "Superaquecimento do motor. Verifique o nível de água e as mangueiras internas.",
             "pane elétrica": "Verifique sinais de dificuldade para ligar o carro e possíveis vazamentos de ácido.",
@@ -59,10 +60,12 @@ def descreve_sintomas(self):
             "ruídos no motor": "Ruídos no motor podem indicar problemas como correias desgastadas, rolamentos defeituosos ou válvulas com folga.",
             "suspensão irregular": "Suspensão irregular pode ser causada por amortecedores desgastados, molas quebradas ou componentes soltos."
         }
+
 # Perguntar os problemas
-        sintomas = input("Descreva os sintomas do veículo separados por vírgula: ")
+        sintomas = input("Descreva os sintomas do veículo separados por vírgula: ") 
+
         for sintoma in sintomas.split(","):
-            sintoma = sintoma.strip().lower().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("ç", "c")
+            sintoma = sintoma.strip().lower()
         if sintoma in problemas:
             print(f"Problema possível para '{sintoma}': {problemas[sintoma]}")
 # Case não ache, opção de chamar um guincho
@@ -70,8 +73,7 @@ def descreve_sintomas(self):
             print(f"Sintoma não reconhecido: {sintoma}.")
             guincho = input("Deseja chamar um guincho? (S/N): ")
             if guincho.lower() == "s":
-                localizacao = input("Insira sua localização: ")
-                chamar_guincho(localizacao)
+                chamar_guincho()
 # Retornar ao menu principal
             else:
                 print("Continuando com outras opções.")
@@ -104,10 +106,11 @@ def main():
         else:
             print("Por favor, digite um número entre 1 e 3.")
         
+# Validação guincho/endereço
 def chamar_guincho():
     nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
-    while not (4 <= len(nome) <= 30) and nome.isnumeric():
-        print("Nome inválido. O nome deve conter apenas letras e ter entre 4 e 30 caracteres.")
+    while not (4 <= len(nome) <= 30 and nome.replace(" ", "").isalpha()):
+        print("Nome inválido. O nome não pode conter números nem pontuação e deve ter entre 4 e 30 caracteres.")
         nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
 
     numero_endereco = input("Digite o número do endereço (entre 1 e 9999): ")
@@ -118,5 +121,6 @@ def chamar_guincho():
     localizacao = f"{nome}, {numero_endereco}"
     print(f"Guincho a caminho! Sua localização: {localizacao}")
 
+# Método para validação do guincho
 if __name__ == "__main__":
     main()
