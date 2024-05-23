@@ -45,13 +45,13 @@ class TelaVeiculo:
 def chamar_guincho():
 
     nome = input("Digite o nome da rua/avenida (de 4 até 40 caracteres): ")
-    # Validar nome
+    # Validar nome endereço
     while not (4 <= len(nome) <= 40 and nome.replace(" ", "").isalpha()):
         print("Nome inválido. O nome não pode conter números nem pontuação e deve ter entre 4 e 40 caracteres.")
         nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
     
     numero_endereco = input("Digite o número do endereço (entre 1 e 9999): ")
-    # Validar número
+    # Validar número endereço
     while not (numero_endereco.isdigit() and 1 <= int(numero_endereco) <= 9999):
         print("Número de endereço inválido. Digite apenas números de 1 até 9999.")
         numero_endereco = input("Digite o número do endereço: ")
