@@ -41,10 +41,27 @@ class TelaVeiculo:
             else:
                 print("Por favor, digite um ano válido com exatamente 4 dígitos, entre 1980 e 2024.")
 
+# Validação guincho/endereço
+def chamar_guincho():
+
+    nome = input("Digite o nome da rua/avenida (de 4 até 40 caracteres): ")
+    # Validar nome
+    while not (4 <= len(nome) <= 40 and nome.replace(" ", "").isalpha()):
+        print("Nome inválido. O nome não pode conter números nem pontuação e deve ter entre 4 e 40 caracteres.")
+        nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
+    
+    numero_endereco = input("Digite o número do endereço (entre 1 e 9999): ")
+    # Validar número
+    while not (numero_endereco.isdigit() and 1 <= int(numero_endereco) <= 9999):
+        print("Número de endereço inválido. Digite apenas números de 1 até 9999.")
+        numero_endereco = input("Digite o número do endereço: ")
+
+    localizacao = f"{nome}, {numero_endereco}"
+    print(f"Guincho a caminho! Sua localização: {localizacao}")
+
 # Problemas e sugestões
-    def descreve_sintomas(self):
-               
-        problemas = {
+def diagnosticar_problemas():
+    problemas = {
             "aquecimento": "Superaquecimento do motor. Verifique o nível de água e as mangueiras internas.",
             "pane elétrica": "Verifique sinais de dificuldade para ligar o carro e possíveis vazamentos de ácido.",
             "problemas no câmbio": "Defeitos no câmbio. Consulte um profissional para avaliação e reparo.",
@@ -62,22 +79,21 @@ class TelaVeiculo:
         }
 
 # Perguntar os problemas
-        sintomas = input("Descreva os sintomas do veículo: ") 
+    sintomas = input("Descreva os sintomas do veículo separados por vírgula: ")
+    sintomas = [s.strip().lower() for s in sintomas.split(",")]
+
+    for sintoma in sintomas:
         if sintoma in problemas:
             print(f"Problema possível para '{sintoma}': {problemas[sintoma]}")
-# Case não ache, opção de chamar um guincho
         else:
             print(f"Sintoma não reconhecido: {sintoma}.")
             guincho = input("Deseja chamar um guincho? (S/N): ")
             if guincho.lower() == "s":
                 chamar_guincho()
-# Retornar ao menu principal
             else:
                 print("Continuando com outras opções.")
 
-
 # Menu principal do programa
-
 def menu_principal():
     print("\nMenu Principal:")
     print("1. Cadastrar Veículo")
@@ -88,36 +104,17 @@ def menu_principal():
 def main():
     while True:
         menu_principal()
-        opcao = input("Escolha uma opção (1/2/3): ")
-
-# As 3 funcionalidades disponíveis no menu
+        opcao = input("Digite a opção desejada (1, 2 ou 3): ")
         if opcao == "1":
             tela_veiculo = TelaVeiculo()
             veiculo = tela_veiculo.cadastra_veiculo_dados()
             print(f"Veículo {veiculo.marca} {veiculo.modelo} ({veiculo.ano}) cadastrado com sucesso!")
         elif opcao == "2":
-            tela_veiculo = TelaVeiculo()
-            tela_veiculo.descreve_sintomas()
+            diagnosticar_problemas()
         elif opcao == "3":
             chamar_guincho()
         else:
             print("Por favor, digite um número entre 1 e 3.")
-        
-# Validação guincho/endereço
-def chamar_guincho():
-    nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
-    while not (4 <= len(nome) <= 30 and nome.replace(" ", "").isalpha()):
-        print("Nome inválido. O nome não pode conter números nem pontuação e deve ter entre 4 e 30 caracteres.")
-        nome = input("Digite o nome da rua/avenida (de 4 até 30 caracteres): ")
 
-    numero_endereco = input("Digite o número do endereço (entre 1 e 9999): ")
-    while not (numero_endereco.isdigit() and 1 <= int(numero_endereco) <= 9999):
-        print("Número de endereço inválido. Digite apenas números de 1 até 9999.")
-        numero_endereco = input("Digite o número do endereço: ")
-
-    localizacao = f"{nome}, {numero_endereco}"
-    print(f"Guincho a caminho! Sua localização: {localizacao}")
-
-# Método para validação do guincho
 if __name__ == "__main__":
     main()
