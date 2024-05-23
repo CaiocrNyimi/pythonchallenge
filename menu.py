@@ -62,10 +62,7 @@ class TelaVeiculo:
         }
 
 # Perguntar os problemas
-        sintomas = input("Descreva os sintomas do veículo separados por vírgula: ") 
-
-        for sintoma in sintomas.split(","):
-            sintoma = sintoma.strip().lower()
+        sintomas = input("Descreva os sintomas do veículo: ") 
         if sintoma in problemas:
             print(f"Problema possível para '{sintoma}': {problemas[sintoma]}")
 # Case não ache, opção de chamar um guincho
